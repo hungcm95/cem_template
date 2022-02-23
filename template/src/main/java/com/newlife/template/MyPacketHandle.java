@@ -1,10 +1,13 @@
 package com.newlife.template;
 
 import java.util.Date;
+
+import com.newlife.cem.common.Constant;
 import com.newlife.cem.common.PcapHelper.PacketFlowInfo;
 import com.newlife.cem.common.PcapHelper.PacketInfo;
 import com.newlife.cem.common.PcapHelper.TcpPacketInfo;
 import com.newlife.cem.common.PcapHelper.UdpPacketInfo;
+import com.newlife.cem.common.TcpFlowHelper.TcpFlowHelper;
 
 public class MyPacketHandle extends FlowHandle {
 
@@ -30,10 +33,17 @@ public class MyPacketHandle extends FlowHandle {
         }
         
     }
-
+    TcpFlowHelper tfh=new TcpFlowHelper(0.033634000);
+    int retran_count=0;
     private void tcppacketHandle(TcpPacketInfo tpi) {
+        int tcp_stat=tfh.getTcpPacketTransmitInfo(tpi);
+        if(tcp_stat==Constant.TcpTransmitType.RETRANSMISSION){
+            retran_count++;
+            System.out.println(tpi.timestamp);
+        }
         //code tcp packet here
-        System.out.println("tcp packet");
+        // System.out.println("tcp packet");
+
     }
 
     private void udppacketHandle(UdpPacketInfo upi) {
@@ -43,7 +53,7 @@ public class MyPacketHandle extends FlowHandle {
     @Override
     void flowEndEvt() {
         // flow end code here
-        
+        System.out.println("num_retran "+retran_count);
     }
 
 }

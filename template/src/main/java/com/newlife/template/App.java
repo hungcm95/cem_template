@@ -25,7 +25,7 @@ public class App
                 // String macAddress = args[2];
                 // String macAddress = "7c:8b:ca:ba:b8:54";
                 // String macAddress = "5c:45:27:7c:a3:07";
-                String macAddress = "48:ad:08:39:c9:00";
+                String macAddress = "d8:32:14:2d:23:58";
                 String[] macAddressParts = macAddress.split(":");
                 for (int i = 0; i < 6; i++) {
                     Integer hex = Integer.parseInt(macAddressParts[i], 16);
@@ -38,11 +38,11 @@ public class App
             }
 
             
-            InterfacePcapHandle iph = new InterfacePcapHandle("-i",
-            "\\Device\\NPF_{2D2AB05D-A87F-4AE4-8A7C-A57E628F2116}");
+            // InterfacePcapHandle iph = new InterfacePcapHandle("-i",
+            // "\\Device\\NPF_{2D2AB05D-A87F-4AE4-8A7C-A57E628F2116}");
 
-            // InterfacePcapHandle iph = new InterfacePcapHandle("-r",
-            // "C:\\Users\\hung_\\Downloads\\1_stall.pcapng");
+            InterfacePcapHandle iph = new InterfacePcapHandle("-r",
+            "C:\\Users\\hung_\\Downloads\\retransmission_flow.pcapng");
 
             // InterfacePcapHandle iph = new InterfacePcapHandle(args[0], args[1],
                     // cap_filter);
